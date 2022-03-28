@@ -12,11 +12,11 @@
         <StackLayout Orientation="Vertical" Grid.Row="0" Spacing="50">
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,110,0,0">
                 <Label Text="服务器口令" FontSize="Large"/>
-                <Entry Placeholder="口令用于验证身份"></Entry>
+                <Entry Placeholder="口令用于验证身份" IsPassword="True" ClearButtonVisibility="WhileEditing"></Entry>
             </StackLayout>
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,0,0,30">
                 <Label Text="Hash值" FontSize="Large"/>
-                <Entry Placeholder="Hash值用于下载"></Entry>
+                <Entry Placeholder="Hash值用于下载" ClearButtonVisibility="WhileEditing"></Entry>
             </StackLayout>
         </StackLayout>
         <StackLayout Orientation="Vertical" Grid.Row="1">
