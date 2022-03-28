@@ -35,6 +35,11 @@
                 <Entry Placeholder="口令用于验证身份"></Entry>
                 <Label Text="Hash值" FontSize="Large"/>
                 <Entry Placeholder="Hash值用于下载"></Entry>
+            <Button BackgroundColor="Red"
+            Margin="0,30,0,30"
+                    TextColor="White"
+                    Text="发送下载任务"
+                    ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
