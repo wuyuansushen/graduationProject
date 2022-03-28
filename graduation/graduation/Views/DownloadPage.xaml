@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="graduation.Views.DownloadPage"
+             xmlns:services="clr-namespace:graduation.Services"
+             Title="首页">
+    <!--Shell.NavBarIsVisible="False"-->
+
+<ContentPage.BindingContext>
+        <services:SendHash />
+    </ContentPage.BindingContext>
+    
+    <Grid Margin="30,0,30,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Vertical" Grid.Row="0" Spacing="50">
+            <StackLayout Orientation="Vertical" Spacing="30" Margin="0,110,0,0">
+                <Label Text="服务器口令" FontSize="Large"/>
+                <Entry Placeholder="口令用于验证身份" IsPassword="True" ClearButtonVisibility="WhileEditing"></Entry>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" Spacing="30" Margin="0,0,0,30">
+                <Label Text="Hash值" FontSize="Large"/>
+                <Entry Placeholder="Hash值用于下载" ClearButtonVisibility="WhileEditing"></Entry>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Grid.Row="1">
+            <Button BackgroundColor="{StaticResource jnuColor}"
+            Margin="0,30,0,30"
+                    TextColor="White"
+                    Text="发送下载任务"
+                    ></Button>
+        </StackLayout>
+    </Grid>
+</ContentPage>
