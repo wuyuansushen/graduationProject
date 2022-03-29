@@ -4,12 +4,8 @@
              x:Class="graduation.Views.DownloadPage"
              Title="首页">
     <!--Shell.NavBarIsVisible="False"-->
-    <Grid Margin="30,0,30,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <StackLayout Orientation="Vertical" Grid.Row="0" Spacing="50">
+    <StackLayout Margin="30,0,30,0">
+        <StackLayout Orientation="Vertical" Spacing="50">
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,110,0,0">
                 <Label Text="服务器口令" FontSize="Large"/>
                 <Entry Placeholder="口令用于验证身份" IsPassword="True" FontSize="Large" ClearButtonVisibility="WhileEditing"></Entry>
@@ -19,12 +15,10 @@
                 <Entry Placeholder="Hash值用于下载" FontSize="Large" ClearButtonVisibility="WhileEditing"></Entry>
             </StackLayout>
         </StackLayout>
-        <StackLayout Orientation="Vertical" Grid.Row="1">
             <Button BackgroundColor="#005a69"
             Margin="0,30,0,30"
                     TextColor="White"
                     Text="发送下载任务"
                     ></Button>
-        </StackLayout>
-    </Grid>
+    </StackLayout>
 </ContentPage>
