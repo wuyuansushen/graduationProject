@@ -10,13 +10,26 @@ namespace graduation.ViewModels
 {
     internal class DownloadViewModel:INotifyPropertyChanged
     {
-        public string Title { get; private set; }
+        public string Title
+        {
+            get; set;
+        }
 
-        public string _hash = string.Empty;
+        private string _hash = String.Empty;
         public string Hash { get { return _hash; } 
-            private set { 
-                _hash = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hash"));
+            //Every an short time modification in Entry prompt(value is Text) will call this setter immediatly.
+            set {
+                if (_hash != value)
+                {
+                    //_hash no change，Still be empty so it will not change when clear to empty
+                    //_hash = value;
+                    Title = value;
+                    //Invoke event to nofity must be after the assigned.
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                    //Core concept: this event invoke means to declare this property has been changed, every property 
+                    //in XAML bind to this property in ViewModel should immediately come to ViewModel to determine the value here
+                    //and change the display in XAML.
+                }
             } }
         public DownloadViewModel()
         {
@@ -25,6 +38,7 @@ namespace graduation.ViewModels
         public DownloadViewModel(string title)
         {
             Title =title;
+            Hash = title;
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

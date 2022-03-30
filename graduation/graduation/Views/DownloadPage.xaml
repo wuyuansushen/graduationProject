@@ -28,7 +28,7 @@
             </StackLayout>
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,0,0,30">
                 <Label Text="Hash值" FontSize="Large"/>
-                <Entry Placeholder="Hash值用于下载" Text="假输入数据"></Entry>
+                <Entry Placeholder="Hash值用于下载" Text="{Binding Path=Hash}"></Entry>
             </StackLayout>
         </StackLayout>
             <Button BackgroundColor="#005a69"
