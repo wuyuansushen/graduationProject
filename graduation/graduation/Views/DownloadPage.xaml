@@ -37,4 +37,5 @@
                     Text="发送下载任务"
                     ></Button>
     </StackLayout>
+                    <!--Text="发送下载任务"-->
 </ContentPage>
