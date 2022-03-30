@@ -10,6 +10,11 @@ namespace graduation.ViewModels
 {
     internal class DownloadViewModel:INotifyPropertyChanged
     {
+        public string Title { get; private set; }
+        public DownloadViewModel()
+        {
+            Title = "主页";
+        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
