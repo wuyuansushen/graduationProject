@@ -12,30 +12,6 @@ namespace graduation.ViewModels
     {
         public string Title { get; private set; }
 
-        private string _passwd;
-        public string Passwd
-        {
-            get { return _passwd; }
-            set
-            {
-                if (_passwd != value)
-                {
-                    ButtonText = value;
-                }
-            }
-        }
-
-
-        public string _buttonText;
-        public string ButtonText { get { return _buttonText; }
-            set { 
-                if(value != _buttonText)
-                {
-                    _buttonText = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Passwd"));
-                }
-            } }
-
         public DownloadViewModel()
         {
             Title = "下载页";
