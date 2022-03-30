@@ -12,6 +12,12 @@ namespace graduation.ViewModels
     {
         public string Title { get; private set; }
 
+        public string _hash = string.Empty;
+        public string Hash { get { return _hash; } 
+            private set { 
+                _hash = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hash"));
+            } }
         public DownloadViewModel()
         {
             Title = "下载页";
