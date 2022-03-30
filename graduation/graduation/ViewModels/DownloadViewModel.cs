@@ -18,7 +18,11 @@ namespace graduation.ViewModels
 
         public DownloadViewModel()
         {
-            Title = "主页";
+            Title = "下载页";
+        }
+        public DownloadViewModel(string title)
+        {
+            Title =title;
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }

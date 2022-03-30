@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="graduation.Views.DownloadPage"
              xmlns:vm="clr-namespace:graduation.ViewModels"
-             Title="{Binding Title}">
+             Title="{Binding Path=Title}">
     <!--Shell.NavBarIsVisible="False"-->
     <ContentPage.BindingContext>
-        <vm:DownloadViewModel></vm:DownloadViewModel>
+        <vm:DownloadViewModel>
+            <x:Arguments>
+                <x:String>主页</x:String>
+            </x:Arguments>
+        </vm:DownloadViewModel>
     </ContentPage.BindingContext>
     <StackLayout Margin="30,0,30,0">
         <StackLayout.Resources>
