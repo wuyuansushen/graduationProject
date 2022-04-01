@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using graduation.ViewModels;
 
 namespace graduation.Views
 {
@@ -15,6 +16,7 @@ namespace graduation.Views
         public DownloadPage()
         {
             InitializeComponent();
+            //BindingContext=new DownloadViewModel();
         }
     }
 }

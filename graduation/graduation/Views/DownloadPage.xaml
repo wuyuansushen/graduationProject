@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:graduation.ViewModels"
              Title="{Binding Path=Title}">
     <!--Shell.NavBarIsVisible="False"-->
+    <!-- Remove to code-behind file.-->
     <ContentPage.BindingContext>
         <vm:DownloadViewModel>
             <x:Arguments>
@@ -12,6 +13,7 @@
             </x:Arguments>
         </vm:DownloadViewModel>
     </ContentPage.BindingContext>
+        
     <StackLayout Margin="30,0,30,0">
         <StackLayout.Resources>
             <ResourceDictionary>
@@ -19,16 +21,18 @@
                     <Setter Property="FontSize" Value="Large"></Setter>
                     <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
                 </Style>
+                <x:String x:Key="PlaceholderTest">在此输入数据</x:String>
+                <!--<x:Double x:Key="LabelFontSize">23.1</x:Double>-->
             </ResourceDictionary>
         </StackLayout.Resources>
         <StackLayout Orientation="Vertical" Spacing="50">
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,110,0,0">
                 <Label Text="服务器口令" FontSize="Large"/>
-                <Entry Placeholder="口令用于验证身份" IsPassword="True"></Entry>
+                <Entry Placeholder="{StaticResource PlaceholderTest}" IsPassword="True"></Entry>
             </StackLayout>
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,0,0,30">
                 <Label Text="Hash值" FontSize="Large"/>
-                <Entry Placeholder="Hash值用于下载" Text=""></Entry>
+                <Entry Placeholder="{StaticResource PlaceholderTest}" Text=""></Entry>
             </StackLayout>
         </StackLayout>
             <Button BackgroundColor="#005a69"
