@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:graduation.ViewModels"
              Title="{Binding Path=Title}">
     <!--Shell.NavBarIsVisible="False"-->
-    <!-- Remove to code-behind file.-->
+    <!-- Remove to code-behind file.
     <ContentPage.BindingContext>
         <vm:DownloadViewModel>
             <x:Arguments>
@@ -13,6 +13,7 @@
             </x:Arguments>
         </vm:DownloadViewModel>
     </ContentPage.BindingContext>
+    -->
         
     <StackLayout Margin="30,0,30,0">
         <StackLayout.Resources>

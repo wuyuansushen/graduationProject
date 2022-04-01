@@ -16,7 +16,7 @@ namespace graduation.Views
         public DownloadPage()
         {
             InitializeComponent();
-            //BindingContext=new DownloadViewModel();
+            BindingContext=new DownloadViewModel(@"主页");
         }
     }
 }
