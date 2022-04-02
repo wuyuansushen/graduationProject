@@ -13,10 +13,11 @@ namespace graduation.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DownloadPage : ContentPage
     {
+        public DownloadViewModel DefaultViewModel { get; set; }
         public DownloadPage()
         {
             InitializeComponent();
-            BindingContext=new DownloadViewModel(@"主页");
+            DefaultViewModel=new DownloadViewModel(@"主页");
         }
     }
 }

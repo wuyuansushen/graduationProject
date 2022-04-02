@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="graduation.Views.DownloadPage"
-             xmlns:vm="clr-namespace:graduation.ViewModels"
+             BindingContext="{Binding Source={RelativeSource Self},Path=DefaultViewModel}"
              Title="{Binding Path=Title}">
+            <!-- xmlns:vm="clr-namespace:graduation.ViewModels"-->
     <!--Shell.NavBarIsVisible="False"-->
+
     <!-- Remove to code-behind file.
     <ContentPage.BindingContext>
         <vm:DownloadViewModel>
@@ -26,6 +28,7 @@
                 <!--<x:Double x:Key="LabelFontSize">23.1</x:Double>-->
             </ResourceDictionary>
         </StackLayout.Resources>
+        
         <StackLayout Orientation="Vertical" Spacing="50">
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,110,0,0">
                 <Label Text="服务器口令" FontSize="Large"/>

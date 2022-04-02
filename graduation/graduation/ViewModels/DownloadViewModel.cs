@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace graduation.ViewModels
 {
-    internal class DownloadViewModel:INotifyPropertyChanged
+    public class DownloadViewModel:INotifyPropertyChanged
     {
         public string Title
         {
