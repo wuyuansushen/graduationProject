@@ -15,6 +15,24 @@ namespace graduation.ViewModels
             get; set;
         }
 
+        private string _token=String.Empty;
+        private string _hash=String.Empty;
+        public string Token
+        {
+            get { return _token; }
+            set
+            {
+                _token = value;
+            }
+        }
+        public string Hash
+        {
+            get { return _hash; }
+            set
+            {
+                _hash = value;
+            }
+        }
         /*
         private string _hash = String.Empty;
         public string Hash { get { return _hash; } 
