@@ -5,6 +5,7 @@ using Xamarin;
 using Xamarin.Forms;
 
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace graduation.ViewModels
 {
