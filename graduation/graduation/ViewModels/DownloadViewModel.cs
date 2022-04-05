@@ -19,7 +19,25 @@ namespace graduation.ViewModels
         public ICommand DownloadCommand { get; private set; }
         private string _token=String.Empty;
         private string _hash=String.Empty;
+        private bool _isEditing = true;
         
+        public DownloadViewModel(string title="下载页")
+        {
+            Title =title;
+            DownloadCommand = new Command(
+                canExecute: () =>
+                {
+                    return !_isEditing;
+                }
+                ,
+                execute: () =>
+                {
+                    (DownloadCommand as Command).ChangeCanExecute();
+                    Title = "点击了";
+                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                }
+                );
+        }
         public string Token
         {
             get { return _token; }
@@ -54,10 +72,6 @@ namespace graduation.ViewModels
                 }
             } }
         */
-        public DownloadViewModel(string title="下载页")
-        {
-            Title =title;
-        }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
