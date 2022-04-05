@@ -19,22 +19,23 @@ namespace graduation.ViewModels
         public ICommand DownloadCommand { get; private set; }
         private string _token=String.Empty;
         private string _hash=String.Empty;
-        private bool _isEditing = true;
+        //private bool _isEditing = default;
         
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
             DownloadCommand = new Command(
-                canExecute: () =>
+          /*      canExecute: () =>
                 {
-                    return !_isEditing;
+                    //In-code is false. It is true at start.
+                    //_isEditing = !_isEditing;
+                    //return _isEditing;
                 }
-                ,
+                ,*/
                 execute: () =>
                 {
-                    (DownloadCommand as Command).ChangeCanExecute();
-                    Title = "点击了";
-                    this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                    //Call to this Command's canExecute method.
+                    //(DownloadCommand as Command).ChangeCanExecute();
                 }
                 );
         }
