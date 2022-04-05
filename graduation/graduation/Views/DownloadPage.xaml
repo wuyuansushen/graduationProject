@@ -43,6 +43,7 @@
         </StackLayout>
             <Button BackgroundColor="#005a69"
             Margin="0,30,0,30"
+            Command="{Binding Path=DownloadCommand}"
                     TextColor="White"
                     Text="发送下载任务"
                     ></Button>

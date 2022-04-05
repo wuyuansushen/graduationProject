@@ -16,8 +16,10 @@ namespace graduation.ViewModels
             get; set;
         }
 
+        public ICommand DownloadCommand { get; private set; }
         private string _token=String.Empty;
         private string _hash=String.Empty;
+        
         public string Token
         {
             get { return _token; }
@@ -52,11 +54,7 @@ namespace graduation.ViewModels
                 }
             } }
         */
-        public DownloadViewModel()
-        {
-            Title = "下载页";
-        }
-        public DownloadViewModel(string title)
+        public DownloadViewModel(string title="下载页")
         {
             Title =title;
         }
