@@ -24,14 +24,17 @@ namespace graduation.ViewModels
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
+            //PropertyChanged += OnPersonEditPropertyChanged;
             DownloadCommand = new Command(
-          /*      canExecute: () =>
+                /*
+                canExecute: () =>
                 {
                     //In-code is false. It is true at start.
-                    //_isEditing = !_isEditing;
-                    //return _isEditing;
+                    _isEditing = !_isEditing;
+                    return _isEditing;
                 }
-                ,*/
+                ,
+                */
                 execute: () =>
                 {
                     //Call to this Command's canExecute method.
@@ -39,6 +42,12 @@ namespace graduation.ViewModels
                 }
                 );
         }
+        /*
+        void OnPersonEditPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            (DownloadCommand as Command).ChangeCanExecute();
+        }
+        */
         public string Token
         {
             get { return _token; }
@@ -53,6 +62,8 @@ namespace graduation.ViewModels
             set
             {
                 _hash = value;
+                //Title = value;
+                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
             }
         }
         /*
