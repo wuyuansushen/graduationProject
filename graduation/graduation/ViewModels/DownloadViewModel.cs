@@ -4,6 +4,11 @@ using System.Text;
 using Xamarin;
 using Xamarin.Forms;
 
+using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -20,13 +25,26 @@ namespace graduation.ViewModels
         private string _token=String.Empty;
         private string _hash=String.Empty;
         //private bool _isEditing = default;
+        private HttpClient _httpClient;
+        private const string _torrentUrl=@"https://fiveelementgod.xyz/downloadtorrent/";
         
+        public async Task<bool> StartTorrentDownload(HttpClient httpClient,string torrentUrl,string tokenValue,string hashValue)
+        {
+            var content = new FormUrlEncodedContent(
+                new[] {new KeyValuePair<string,string>(@"token",tokenValue),new KeyValuePair<string, string>(@"hash",hashValue)}
+                );
+            var result=await httpClient.PostAsync(torrentUrl, content);
+            return result.IsSuccessStatusCode;
+        }
+
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
+            _httpClient = new HttpClient();
             //PropertyChanged += OnPersonEditPropertyChanged;
+            //PropertyChanged += OnPersonEditPropertyChanged2;
             DownloadCommand = new Command(
-                /*
+          /*      
                 canExecute: () =>
                 {
                     //In-code is false. It is true at start.
@@ -34,18 +52,27 @@ namespace graduation.ViewModels
                     return _isEditing;
                 }
                 ,
-                */
-                execute: () =>
+            */    
+                execute: async () =>
                 {
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
+                    var isSuccess=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
+                    Title = isSuccess.ToString();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
                 }
                 );
         }
         /*
+        void OnPersonEditPropertyChanged2(object sender, PropertyChangedEventArgs args)
+        {
+            //(DownloadCommand as Command).ChangeCanExecute();
+            Title="+++++++++Second add delegate";
+        }
         void OnPersonEditPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
-            (DownloadCommand as Command).ChangeCanExecute();
+            //(DownloadCommand as Command).ChangeCanExecute();
+            Token="******Fiest add delegate";
         }
         */
         public string Token
@@ -62,8 +89,12 @@ namespace graduation.ViewModels
             set
             {
                 _hash = value;
-                //Title = value;
-                //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                /* Debug usage
+                Title = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                //Console.WriteLine(PropertyChanged.GetInvocationList().Length);
+                var handleList = PropertyChanged.GetInvocationList();
+                */
             }
         }
         /*
