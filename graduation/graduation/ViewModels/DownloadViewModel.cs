@@ -34,21 +34,22 @@ namespace graduation.ViewModels
         private string _token=String.Empty;
         private string _hash=String.Empty;
         //private bool _isEditing = default;
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
 
         private const string _torrentUrl=@"https://fiveelementgod.xyz/downloadtorrent/";
-        
-        public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient,string torrentUrl,string tokenValue,string hashValue)
+
+        public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient, string torrentUrl, string tokenValue, string hashValue)
         {
-            var payload = new DownloadHash() {
+            var payload = new DownloadHash()
+            {
                 Token = tokenValue,
                 Hash = hashValue
             };
-            var jsonPayload=JsonSerializer.Serialize(payload);
-            var httpContent=new StringContent(jsonPayload,Encoding.UTF8,"application/json");
-            var httpResponse=await httpClient.PostAsync(torrentUrl,httpContent);
-                return httpResponse.Content;
+            var jsonPayload = JsonSerializer.Serialize(payload);
+            var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            var httpResponse = await httpClient.PostAsync(torrentUrl, httpContent);
+            return httpResponse.Content;
         }
 
         public DownloadViewModel(string title="下载页")
