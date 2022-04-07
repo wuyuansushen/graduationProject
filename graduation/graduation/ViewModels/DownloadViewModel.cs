@@ -4,6 +4,9 @@ using System.Text;
 using Xamarin;
 using Xamarin.Forms;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -35,11 +38,17 @@ namespace graduation.ViewModels
 
         private const string _torrentUrl=@"https://fiveelementgod.xyz/downloadtorrent/";
         
-        /*
         public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient,string torrentUrl,string tokenValue,string hashValue)
         {
+            var payload = new DownloadHash() {
+                Token = tokenValue,
+                Hash = hashValue
+            };
+            var jsonPayload=JsonSerializer.Serialize(payload);
+            var httpContent=new StringContent(jsonPayload,Encoding.UTF8,"application/json");
+            var httpResponse=await httpClient.PostAsync(torrentUrl,httpContent);
+                return httpResponse.Content;
         }
-        */
 
         public DownloadViewModel(string title="下载页")
         {
@@ -63,11 +72,9 @@ namespace graduation.ViewModels
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
 
-                    /*
-                    var isSuccess=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
-                    ForDebug = await isSuccess.ReadAsStringAsync();
+                    var responseContent=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
+                    ForDebug = await responseContent.ReadAsStringAsync();
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
-                    */
                 }
                 );
         }
