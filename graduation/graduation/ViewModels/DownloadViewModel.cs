@@ -12,11 +12,17 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Input;
 
+using graduation.Models;
+
 namespace graduation.ViewModels
 {
     public class DownloadViewModel:INotifyPropertyChanged
     {
         public string Title
+        {
+            get; set;
+        }
+        public string ForDebug
         {
             get; set;
         }
@@ -26,20 +32,19 @@ namespace graduation.ViewModels
         private string _hash=String.Empty;
         //private bool _isEditing = default;
         private HttpClient _httpClient;
+
         private const string _torrentUrl=@"https://fiveelementgod.xyz/downloadtorrent/";
         
-        public async Task<bool> StartTorrentDownload(HttpClient httpClient,string torrentUrl,string tokenValue,string hashValue)
+        /*
+        public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient,string torrentUrl,string tokenValue,string hashValue)
         {
-            var content = new FormUrlEncodedContent(
-                new[] {new KeyValuePair<string,string>(@"token",tokenValue),new KeyValuePair<string, string>(@"hash",hashValue)}
-                );
-            var result=await httpClient.PostAsync(torrentUrl, content);
-            return result.IsSuccessStatusCode;
         }
+        */
 
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
+            ForDebug = "11111";
             _httpClient = new HttpClient();
             //PropertyChanged += OnPersonEditPropertyChanged;
             //PropertyChanged += OnPersonEditPropertyChanged2;
@@ -57,9 +62,12 @@ namespace graduation.ViewModels
                 {
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
+
+                    /*
                     var isSuccess=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
-                    Title = isSuccess.ToString();
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Title"));
+                    ForDebug = await isSuccess.ReadAsStringAsync();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
+                    */
                 }
                 );
         }

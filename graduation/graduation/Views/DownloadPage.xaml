@@ -47,6 +47,7 @@
                     TextColor="White"
                     Text="发送下载任务"
                     ></Button>
+        <Label Text="{Binding ForDebug}" FontSize="Medium" TextColor="Red"></Label>
     </StackLayout>
                     <!--Text="发送下载任务"-->
 </ContentPage>
