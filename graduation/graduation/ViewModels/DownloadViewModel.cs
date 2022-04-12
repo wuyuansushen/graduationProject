@@ -55,7 +55,7 @@ namespace graduation.ViewModels
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
-            ForDebug = "11111";
+            ForDebug = "提示信息输出处";
             _httpClient = new HttpClient();
             //PropertyChanged += OnPersonEditPropertyChanged;
             //PropertyChanged += OnPersonEditPropertyChanged2;
@@ -73,7 +73,8 @@ namespace graduation.ViewModels
                 {
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
-
+                    ForDebug = @"发送中...";
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
                     var responseContent=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
                     ForDebug = await responseContent.ReadAsStringAsync();
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));

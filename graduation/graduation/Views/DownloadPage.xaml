@@ -42,12 +42,13 @@
             </StackLayout>
         </StackLayout>
             <Button BackgroundColor="#005a69"
-            Margin="0,30,0,30"
+            Margin="0,30,0,0"
             Command="{Binding Path=DownloadCommand}"
                     TextColor="White"
                     Text="发送下载任务"
                     ></Button>
-        <Label Text="{Binding ForDebug}" FontSize="Medium" TextColor="Red"></Label>
+        <Label Text="{Binding ForDebug}" FontSize="Medium" Padding="15"
+               HorizontalTextAlignment="Center"></Label>
     </StackLayout>
                     <!--Text="发送下载任务"-->
 </ContentPage>
