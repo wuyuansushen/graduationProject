@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="graduation.Views.TorrentPage"
-             Title="种子列表">
-
+             Title="种子列表"
+             BindingContext="{Binding Source={RelativeSource Self},Path=DefaultViewModel}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="在浏览器中打开"></ToolbarItem>
+        <ToolbarItem Text="在浏览器中打开" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
