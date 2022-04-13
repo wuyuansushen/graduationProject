@@ -55,6 +55,7 @@
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>
     </AndroidSupportedAbis>
+    <AndroidDexTool>d8</AndroidDexTool>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

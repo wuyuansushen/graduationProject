@@ -47,7 +47,7 @@
                     TextColor="White"
                     Text="发送下载任务"
                     ></Button>
-        <Label Text="{Binding ForDebug}" FontSize="Medium" Padding="15"
+        <Label Text="{Binding ForDebug}" FontSize="Small" Padding="15"
                HorizontalTextAlignment="Center"></Label>
     </StackLayout>
                     <!--Text="发送下载任务"-->

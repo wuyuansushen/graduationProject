@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using graduation.ViewModels;
 
 namespace graduation.Views
 {
@@ -13,11 +14,11 @@ namespace graduation.Views
     public partial class TorrentPage : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
-
+        public TorrentViewModel DefaultViewModel { get; set; }
         public TorrentPage()
         {
             InitializeComponent();
-
+            DefaultViewModel = new TorrentViewModel();
             Items = new ObservableCollection<string>
             {
                 "Item 1",
