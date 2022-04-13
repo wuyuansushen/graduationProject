@@ -73,7 +73,7 @@ namespace graduation.ViewModels
                 {
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
-                    ForDebug = @"发送中...";
+                    ForDebug = @"发送至服务器处理中...";
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
                     var responseContent=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
                     ForDebug = await responseContent.ReadAsStringAsync();
