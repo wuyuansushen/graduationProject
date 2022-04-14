@@ -50,17 +50,17 @@ namespace graduation.ViewModels
             var jsonPayload = JsonSerializer.Serialize(payload);
             var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PostAsync(torrentUrl, httpContent);
-            await AddRecord(torrentUrl);
+            await AddRecord(hashValue);
             return httpResponse.Content;
         }
 
-        public async Task AddRecord(string torrentUrl)
+        public async Task AddRecord(string torrentHash)
         {
             DateTime dateNow = DateTime.Now;
             var torrent = new Torrent()
             {
                 Date=dateNow.ToString(),
-                Hash= torrentUrl
+                Hash= torrentHash
             };
             using (var torrentContext=new TorrentContext())
             {

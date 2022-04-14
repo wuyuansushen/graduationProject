@@ -13,12 +13,13 @@ namespace graduation.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TorrentPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
+        //public ObservableCollection<string> Items { get; set; }
         public TorrentViewModel DefaultViewModel { get; set; }
         public TorrentPage()
         {
             InitializeComponent();
             DefaultViewModel = new TorrentViewModel();
+          /*  
             Items = new ObservableCollection<string>
             {
                 "Item 1",
@@ -27,8 +28,14 @@ namespace graduation.Views
                 "Item 4",
                 "Item 5"
             };
+          */
+            //MyListView.ItemsSource = Items;
+        }
 
-            MyListView.ItemsSource = Items;
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            DefaultViewModel.OnAppearing();
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)

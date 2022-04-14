@@ -6,10 +6,13 @@
              BindingContext="{Binding Source={RelativeSource Self},Path=DefaultViewModel}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="在浏览器中打开" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
+        <ToolbarItem Text="进入浏览器下载" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     
+    <!--
+            ItemsSource="{Binding Items}"
+    -->
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"
@@ -17,7 +20,7 @@
     <!--Built in Cells-->
     <ListView.ItemTemplate>
         <DataTemplate>
-            <TextCell Text="{Binding .}" />
+            <TextCell Text="{Binding Hash}" Detail="{Binding Date}" />
         </DataTemplate>
     </ListView.ItemTemplate>
     
