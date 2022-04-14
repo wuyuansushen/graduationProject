@@ -8,6 +8,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="在浏览器中打开" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
+
+    
   <ListView x:Name="MyListView"
             ItemsSource="{Binding Items}"
             ItemTapped="Handle_ItemTapped"

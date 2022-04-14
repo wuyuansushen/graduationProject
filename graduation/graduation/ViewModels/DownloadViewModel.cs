@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 
 using graduation.Models;
+using graduation.Services;
 
 namespace graduation.ViewModels
 {
@@ -49,9 +50,24 @@ namespace graduation.ViewModels
             var jsonPayload = JsonSerializer.Serialize(payload);
             var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PostAsync(torrentUrl, httpContent);
+            await AddRecord(torrentUrl);
             return httpResponse.Content;
         }
 
+        public async Task AddRecord(string torrentUrl)
+        {
+            DateTime dateNow = DateTime.Now;
+            var torrent = new Torrent()
+            {
+                Date=dateNow.ToString(),
+                Hash= torrentUrl
+            };
+            using (var torrentContext=new TorrentContext())
+            {
+                torrentContext.Add(torrent);
+                await torrentContext.SaveChangesAsync();
+            }
+        }
         public DownloadViewModel(string title="下载页")
         {
             Title =title;
