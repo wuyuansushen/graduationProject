@@ -7,6 +7,9 @@ using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using System.Windows.Input;
 
+using System.Net;
+using System.Net.Http;
+
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +21,8 @@ namespace graduation.ViewModels
     public class TorrentViewModel:INotifyPropertyChanged
     {
         public ICommand OpenBrowserCommand { get;private set; }
+        public string Title { get; set; }
+
         private const string RepoUrl = @"https://fiveelementgod.xyz/repo/";
         public ObservableCollection<Torrent> Items { get; set; }
         public TorrentViewModel()
@@ -27,6 +32,7 @@ namespace graduation.ViewModels
                 {
                     await Browser.OpenAsync(RepoUrl);
                 });
+            Title = @"种子列表";
             Items = new ObservableCollection<Torrent>(ReadTorrents());
         }
 
