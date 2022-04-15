@@ -49,15 +49,15 @@ namespace graduation.Views
             if (action == "删除")
             {
                 await DefaultViewModel.DeleteRecord(torrentId);
+                DefaultViewModel.RefreshList();
             }
-            else if(action =="下载")
+            else if (action == "下载")
             {
 
             }
             else { }
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
-            DefaultViewModel.RefreshList();
         }
     }
 }
