@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using graduation.Models;
 using graduation.ViewModels;
 
 namespace graduation.Views
@@ -42,8 +43,9 @@ namespace graduation.Views
         {
             if (e.Item == null)
                 return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+            Torrent torrentTapped = (Torrent)e.Item;
+            int torrentId= torrentTapped.Id;
+            await DisplayAlert("删除提示", $"确定要删除Hash为{torrentTapped.Hash}的种子吗?", "OK");
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;

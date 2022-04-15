@@ -27,7 +27,7 @@ namespace graduation.ViewModels
                 {
                     await Browser.OpenAsync(RepoUrl);
                 });
-            Items = new ObservableCollection<Torrent>( ReadTorrents());
+            Items = new ObservableCollection<Torrent>(ReadTorrents());
         }
 
         public List<Torrent> ReadTorrents()
