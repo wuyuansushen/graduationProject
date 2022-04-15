@@ -40,6 +40,14 @@ namespace graduation.ViewModels
             return torrents;
         }
 
+        public async Task DeleteRecord(int id)
+        {
+            using(var torrentContext=new TorrentContext())
+            {
+                torrentContext.Remove<Torrent>(torrentContext.Find<Torrent>(id));
+                await torrentContext.SaveChangesAsync();
+            }
+        }
         public void OnAppearing()
         {
             Items = new ObservableCollection<Torrent>( ReadTorrents());

@@ -45,10 +45,19 @@ namespace graduation.Views
                 return;
             Torrent torrentTapped = (Torrent)e.Item;
             int torrentId= torrentTapped.Id;
-            await DisplayAlert("删除提示", $"确定要删除Hash为{torrentTapped.Hash}的种子吗?", "OK");
+            string action=await DisplayActionSheet("执行操作","取消",null,"下载","删除");
+            if (action == "删除")
+            {
+                await DefaultViewModel.DeleteRecord(torrentId);
+            }
+            else if(action =="下载")
+            {
 
+            }
+            else { }
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
+            DefaultViewModel.OnAppearing();
         }
     }
 }
