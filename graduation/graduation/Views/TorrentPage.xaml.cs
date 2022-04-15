@@ -36,7 +36,7 @@ namespace graduation.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            DefaultViewModel.OnAppearing();
+            DefaultViewModel.RefreshList();
         }
 
         async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -57,7 +57,7 @@ namespace graduation.Views
             else { }
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
-            DefaultViewModel.OnAppearing();
+            DefaultViewModel.RefreshList();
         }
     }
 }

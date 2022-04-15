@@ -37,6 +37,7 @@ namespace graduation.ViewModels
             {
                 torrents=torrentContext.Torrents.ToList();
             }
+            torrents.Reverse();
             return torrents;
         }
 
@@ -48,7 +49,7 @@ namespace graduation.ViewModels
                 await torrentContext.SaveChangesAsync();
             }
         }
-        public void OnAppearing()
+        public void RefreshList()
         {
             Items = new ObservableCollection<Torrent>( ReadTorrents());
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
