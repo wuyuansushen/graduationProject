@@ -6,13 +6,11 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using System.Windows.Input;
-
+using System.IO;
 using System.Net;
-using System.Net.Http;
 
 using System.Linq;
 using System.Threading.Tasks;
-
 using graduation.Models;
 using graduation.Services;
 
@@ -59,6 +57,18 @@ namespace graduation.ViewModels
         {
             Items = new ObservableCollection<Torrent>( ReadTorrents());
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Items"));
+        }
+
+        public void LocalDownload(string hash)
+        {
+            //Invoke DI Service.
+            DependencyService.Get<ILocalDownloadService>().WriteTorrent(hash);
+            /*Only download file in internal Storage
+            using (var webClient = new WebClient())
+            {
+                webClient.DownloadFile(RepoUrl + hash + @".torrent", Path.Combine(FileSystem.CacheDirectory, hash + @".torrent"));
+            }
+            */
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

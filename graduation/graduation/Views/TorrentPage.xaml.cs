@@ -44,16 +44,16 @@ namespace graduation.Views
             if (e.Item == null)
                 return;
             Torrent torrentTapped = (Torrent)e.Item;
-            int torrentId= torrentTapped.Id;
+            //int torrentId= torrentTapped.Id;
             string action=await DisplayActionSheet("执行操作","取消",null,"下载","删除");
             if (action == "删除")
             {
-                await DefaultViewModel.DeleteRecord(torrentId);
+                await DefaultViewModel.DeleteRecord(torrentTapped.Id);
                 DefaultViewModel.RefreshList();
             }
             else if (action == "下载")
             {
-
+                DefaultViewModel.LocalDownload(torrentTapped.Hash);
             }
             else { }
             //Deselect Item

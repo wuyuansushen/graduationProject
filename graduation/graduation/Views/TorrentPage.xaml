@@ -6,7 +6,7 @@
              BindingContext="{Binding Source={RelativeSource Self},Path=DefaultViewModel}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="进入浏览器下载" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
+        <ToolbarItem Text="用浏览器打开" Command="{Binding Path=OpenBrowserCommand}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     
