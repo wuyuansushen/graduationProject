@@ -24,7 +24,8 @@
                     <Setter Property="FontSize" Value="Large"></Setter>
                     <Setter Property="ClearButtonVisibility" Value="WhileEditing"></Setter>
                 </Style>
-                <x:String x:Key="PlaceholderTest">在此输入数据</x:String>
+                <x:String x:Key="PlaceholderToken">在此输入口令用于身份验证</x:String>
+                <x:String x:Key="PlaceholderHash">请输入长度40的Hash特征码</x:String>
                 <!--<x:Double x:Key="LabelFontSize">23.1</x:Double>-->
             </ResourceDictionary>
         </StackLayout.Resources>
@@ -34,11 +35,11 @@
                 <Label Text="服务器口令" FontSize="Large"/>
                 <!--Text property must be initialized to empty string instead of null which is default because
                 the data binding will not work -->
-                <Entry Placeholder="{StaticResource PlaceholderTest}" Text="{Binding Path=Token}"  IsPassword="True"></Entry>
+                <Entry Placeholder="{StaticResource PlaceholderToken}" Text="{Binding Path=Token}"  IsPassword="True"></Entry>
             </StackLayout>
             <StackLayout Orientation="Vertical" Spacing="30" Margin="0,0,0,30">
                 <Label Text="Hash值" FontSize="Large"/>
-                <Entry Placeholder="{StaticResource PlaceholderTest}" Text="{Binding Path=Hash}"></Entry>
+                <Entry Placeholder="{StaticResource PlaceholderHash}" Text="{Binding Path=Hash}"></Entry>
             </StackLayout>
         </StackLayout>
             <Button BackgroundColor="#005a69"
