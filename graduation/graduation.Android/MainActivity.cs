@@ -26,22 +26,26 @@ namespace graduation.Droid
             string urlAddress = RepoUrl + hash + @".torrent";
             try
             {
+                
                 /*
                 webClient.DownloadFile(RepoUrl + hash + @".torrent", Path.Combine(
                     Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads, hash + @".torrent"));
-                webClient.DownloadFile(urlAddress,fileName); 
                 */
-                            string text = "GFG is a CS portal.";
+                webClient.DownloadFile(urlAddress,fileName); 
+                
+                /*
+                            string text = "11111";
             byte[] data = Encoding.ASCII.GetBytes(text);
            
             string DownloadsPath = Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads);
 
             string filePath = Path.Combine(DownloadsPath, hash);
             File.WriteAllBytes(filePath, data);
+                */
             }
             catch (Exception ex)
             {
-                Console.WriteLine(fileName);
+               // Console.WriteLine(fileName);
                 Console.WriteLine(ex.Message);
             }
         }

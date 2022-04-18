@@ -48,8 +48,20 @@ namespace graduation.Views
             string action=await DisplayActionSheet("执行操作","取消",null,"下载","删除");
             if (action == "删除")
             {
-                await DefaultViewModel.DeleteRecord(torrentTapped.Id);
-                DefaultViewModel.RefreshList();
+                //await DisplayAlert(@"提示框Title", @"这是message信息", @"这个是按钮信息");
+
+                //It will return null if you click Cancel.
+                string deletePasswd = await DisplayPromptAsync(@"删除验证",
+                    @"请输入云端删除密码。密码验证通过后，云端方可删除",
+                    accept: @"确定", @"取消",
+                    @"请输入删除密码");
+                //Console.WriteLine(deletePasswd);
+                if (deletePasswd != null)
+                {
+                    await DefaultViewModel.DeleteRecord(torrentTapped.Id);
+                    DefaultViewModel.RefreshList();
+                }
+                else { }
             }
             else if (action == "下载")
             {
