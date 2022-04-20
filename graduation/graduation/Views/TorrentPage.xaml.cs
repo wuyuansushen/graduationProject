@@ -58,8 +58,18 @@ namespace graduation.Views
                 //Console.WriteLine(deletePasswd);
                 if (deletePasswd != null)
                 {
-                    await DefaultViewModel.DeleteRecord(torrentTapped.Id);
-                    DefaultViewModel.RefreshList();
+
+                    var deleteResultBool = await DefaultViewModel.SendDeleteRequest(deletePasswd, torrentTapped.Hash);
+                    if (deleteResultBool)
+                    {
+                        await DefaultViewModel.DeleteRecord(torrentTapped.Id);
+                        await DisplayAlert(@"删除成功", @"输入密码正确，云端种子文件已删除。", @"确定");
+                        DefaultViewModel.RefreshList();
+                    }
+                    else
+                    {
+                        await DisplayAlert(@"删除失败", @"您输入的删除密码有误，请比对后重新输入。", @"确定");
+                    }
                 }
                 else { }
             }

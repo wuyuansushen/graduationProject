@@ -42,7 +42,7 @@ namespace graduation.ViewModels
 
         public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient, string torrentUrl, string tokenValue, string hashValue)
         {
-            var payload = new DownloadHash()
+            var payload = new HashRequest()
             {
                 Token = tokenValue,
                 Hash = hashValue

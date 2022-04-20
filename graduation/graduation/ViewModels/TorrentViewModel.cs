@@ -6,8 +6,11 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using System.Windows.Input;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,10 +21,16 @@ namespace graduation.ViewModels
 {
     public class TorrentViewModel:INotifyPropertyChanged
     {
+        public class DeleteResult
+        {
+            public bool Successed { get; set; }
+        }
         public ICommand OpenBrowserCommand { get;private set; }
         public string Title { get; set; }
 
         private const string RepoUrl = @"https://fiveelementgod.xyz/repo/";
+        private const string DeleteUrl = @"https://fiveelementgod.xyz/deletetorrent/";
+
         public ObservableCollection<Torrent> Items { get; set; }
         public TorrentViewModel()
         {
@@ -45,6 +54,23 @@ namespace graduation.ViewModels
             return torrents;
         }
 
+        public async Task<bool> SendDeleteRequest(string deletePasswd, string torrentHash)
+        {
+            
+            string deleteResult = String.Empty;
+            var httpClient=new HttpClient();
+            var payload = new HashRequest
+            {
+                Token = deletePasswd,
+                Hash = torrentHash,
+            };
+            var jsonPayload = JsonSerializer.Serialize(payload);
+            var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            var httpResponse = await httpClient.PostAsync(DeleteUrl, httpContent);
+            deleteResult=await httpResponse.Content.ReadAsStringAsync();
+            var resultBool=(JsonSerializer.Deserialize<DeleteResult>(deleteResult)).Successed;
+            return resultBool;
+        }
         public async Task DeleteRecord(int id)
         {
             using(var torrentContext=new TorrentContext())

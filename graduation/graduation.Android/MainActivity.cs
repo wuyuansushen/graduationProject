@@ -21,18 +21,18 @@ namespace graduation.Droid
         void ILocalDownloadService.WriteTorrent(string hash)
         {
             using var webClient = new WebClient();
-                string fileName = Path.Combine(
-                    Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads, hash + @".torrent");
+            string fileName = Path.Combine(
+                Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads, hash + @".torrent");
             string urlAddress = RepoUrl + hash + @".torrent";
             try
             {
-                
+
                 /*
                 webClient.DownloadFile(RepoUrl + hash + @".torrent", Path.Combine(
                     Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads, hash + @".torrent"));
                 */
-                webClient.DownloadFile(urlAddress,fileName); 
-                
+                webClient.DownloadFile(urlAddress, fileName);
+
                 /*
                             string text = "11111";
             byte[] data = Encoding.ASCII.GetBytes(text);
@@ -45,7 +45,7 @@ namespace graduation.Droid
             }
             catch (Exception ex)
             {
-               // Console.WriteLine(fileName);
+                // Console.WriteLine(fileName);
                 Console.WriteLine(ex.Message);
             }
         }
