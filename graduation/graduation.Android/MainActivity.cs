@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.OS;
 using graduation.Droid;
 
-[assembly:Xamarin.Forms.Dependency(typeof(WriteTorrentService))]
+[assembly: Xamarin.Forms.Dependency(typeof(WriteTorrentService))]
 namespace graduation.Droid
 {
     public class WriteTorrentService : ILocalDownloadService
