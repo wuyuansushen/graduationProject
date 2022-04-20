@@ -31,7 +31,7 @@ namespace graduation.Droid
                 webClient.DownloadFile(RepoUrl + hash + @".torrent", Path.Combine(
                     Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, Android.OS.Environment.DirectoryDownloads, hash + @".torrent"));
                 */
-                webClient.DownloadFile(urlAddress, fileName);
+                webClient.DownloadFileAsync(new Uri(urlAddress), fileName);
 
                 /*
                             string text = "11111";
