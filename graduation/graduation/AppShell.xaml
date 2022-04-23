@@ -18,12 +18,12 @@
         </ResourceDictionary>
     </Shell.Resources>
     
-    <TabBar>
-        <Tab Title="新建下载" Icon="icon_download.png">
-            <ShellContent ContentTemplate="{DataTemplate views:DownloadPage}" />
+    <TabBar Route="graduation">
+        <Tab Title="新建下载" Route="firsttab" Icon="icon_download.png">
+            <ShellContent Route="download" ContentTemplate="{DataTemplate views:DownloadPage}" />
         </Tab>
-        <Tab Title="下载管理" Icon="icon_torrentlist.png">
-            <ShellContent ContentTemplate="{DataTemplate views:TorrentPage}" />
+        <Tab Title="下载管理" Route="secondtab" Icon="icon_torrentlist.png">
+            <ShellContent Route="torrents" ContentTemplate="{DataTemplate views:TorrentPage}" />
         </Tab>
     </TabBar>
 </Shell>

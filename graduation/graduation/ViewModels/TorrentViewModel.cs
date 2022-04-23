@@ -37,7 +37,10 @@ namespace graduation.ViewModels
             OpenBrowserCommand = new Command(execute:
                 async () =>
                 {
-                    await Browser.OpenAsync(RepoUrl);
+                    //await Browser.OpenAsync(RepoUrl);
+
+                    var shell = Shell.Current;
+                    await shell.GoToAsync(@"//graduation/firsttab/download");
                 });
             Title = @"种子列表";
             Items = new ObservableCollection<Torrent>(ReadTorrents());
