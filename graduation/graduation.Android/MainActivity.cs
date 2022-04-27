@@ -9,6 +9,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using graduation.Droid;
+//using Xamarin.Forms.Platform.Android;
 
 [assembly: Xamarin.Forms.Dependency(typeof(WriteTorrentService))]
 namespace graduation.Droid
@@ -57,8 +58,13 @@ namespace graduation.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            //Initial Xamarin.Forms framework.
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            //Load Xamarin.Android project.
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            //Load Xamarin common project.
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

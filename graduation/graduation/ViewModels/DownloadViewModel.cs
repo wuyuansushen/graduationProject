@@ -16,7 +16,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 
 using graduation.Models;
-using graduation.Services;
+using graduation.Data;
 
 namespace graduation.ViewModels
 {
@@ -50,7 +50,11 @@ namespace graduation.ViewModels
             var jsonPayload = JsonSerializer.Serialize(payload);
             var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PostAsync(torrentUrl, httpContent);
-            await AddRecord(hashValue);
+            if (httpResponse.StatusCode == HttpStatusCode.OK)
+            {
+                await AddRecord(hashValue);
+            }
+            else { }
             return httpResponse.Content;
         }
 
@@ -94,6 +98,9 @@ namespace graduation.ViewModels
                     var responseContent=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
                     ForDebug = await responseContent.ReadAsStringAsync();
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
+                    Hash =String.Empty;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hash"));
+                    await Shell.Current.DisplayAlert(@"下载成功", @"Hash转种子文件下载成功，Hash输入框字段已清除。", @"知道了");
                 }
                 );
         }

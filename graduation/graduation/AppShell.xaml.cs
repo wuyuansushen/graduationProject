@@ -9,6 +9,7 @@ namespace graduation
         public AppShell()
         {
             InitializeComponent();
+            //Routing.RegisterRoute
         }
     }
 }

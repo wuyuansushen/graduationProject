@@ -16,6 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using graduation.Models;
 using graduation.Services;
+using graduation.Data;
 
 namespace graduation.ViewModels
 {
@@ -61,9 +62,7 @@ namespace graduation.ViewModels
 
         public async Task<bool> SendDeleteRequest(string deletePasswd, string torrentHash)
         {
-            
-            string deleteResult = String.Empty;
-            var httpClient=new HttpClient();
+            var httpClient =new HttpClient();
             var payload = new HashRequest
             {
                 Token = deletePasswd,
@@ -72,7 +71,7 @@ namespace graduation.ViewModels
             var jsonPayload = JsonSerializer.Serialize(payload);
             var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
             var httpResponse = await httpClient.PostAsync(DeleteUrl, httpContent);
-            deleteResult=await httpResponse.Content.ReadAsStringAsync();
+            string deleteResult = await httpResponse.Content.ReadAsStringAsync();
             var resultBool=(JsonSerializer.Deserialize<DeleteResult>(deleteResult)).Successed;
             return resultBool;
         }
