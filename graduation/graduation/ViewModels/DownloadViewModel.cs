@@ -20,7 +20,7 @@ using graduation.Data;
 
 namespace graduation.ViewModels
 {
-    public class DownloadViewModel:INotifyPropertyChanged
+    public class DownloadViewModel : INotifyPropertyChanged
     {
         public string Title
         {
@@ -32,13 +32,13 @@ namespace graduation.ViewModels
         }
 
         public ICommand DownloadCommand { get; private set; }
-        private string _token=String.Empty;
-        private string _hash=String.Empty;
+        private string _token = String.Empty;
+        private string _hash = String.Empty;
         //private bool _isEditing = default;
         private readonly HttpClient _httpClient;
 
 
-        private const string _torrentUrl=@"https://fiveelementgod.xyz/downloadtorrent/";
+        private const string _torrentUrl = @"https://fiveelementgod.xyz/downloadtorrent/";
 
         public async Task<HttpContent> StartTorrentDownload(HttpClient httpClient, string torrentUrl, string tokenValue, string hashValue)
         {
@@ -63,42 +63,42 @@ namespace graduation.ViewModels
             DateTime dateNow = DateTime.Now;
             var torrent = new Torrent()
             {
-                Date=dateNow.ToString(),
-                Hash= torrentHash
+                Date = dateNow.ToString(),
+                Hash = torrentHash
             };
-            using (var torrentContext=new TorrentContext())
+            using (var torrentContext = new TorrentContext())
             {
                 torrentContext.Add(torrent);
                 await torrentContext.SaveChangesAsync();
             }
         }
-        public DownloadViewModel(string title="下载页")
+        public DownloadViewModel(string title = "下载页")
         {
-            Title =title;
+            Title = title;
             ForDebug = "提示信息输出处";
             _httpClient = new HttpClient();
             //PropertyChanged += OnPersonEditPropertyChanged;
             //PropertyChanged += OnPersonEditPropertyChanged2;
             DownloadCommand = new Command(
-          /*      
-                canExecute: () =>
-                {
-                    //In-code is false. It is true at start.
-                    _isEditing = !_isEditing;
-                    return _isEditing;
-                }
-                ,
-            */    
+                /*      
+                      canExecute: () =>
+                      {
+                          //In-code is false. It is true at start.
+                          _isEditing = !_isEditing;
+                          return _isEditing;
+                      }
+                      ,
+                  */
                 execute: async () =>
                 {
                     //Call to this Command's canExecute method.
                     //(DownloadCommand as Command).ChangeCanExecute();
                     ForDebug = @"发送至服务器处理中...";
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
-                    var responseContent=await StartTorrentDownload(_httpClient,_torrentUrl,Token,Hash);
+                    var responseContent = await StartTorrentDownload(_httpClient, _torrentUrl, Token, Hash);
                     ForDebug = await responseContent.ReadAsStringAsync();
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ForDebug"));
-                    Hash =String.Empty;
+                    Hash = String.Empty;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hash"));
                     await Shell.Current.DisplayAlert(@"下载成功", @"Hash转种子文件下载成功，Hash输入框字段已清除。", @"知道了");
                 }
